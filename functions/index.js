@@ -1,8 +1,19 @@
 const admin = require("firebase-admin");
-admin.initializeApp();
 
 const addAdminRole = require("./src/AddAdminRole");
+const testEndpoint = require("./src/TestEndoint");
 
-exports = {
-    addAdminRole,
-};
+if(process.env.NODE_ENV !== 'production') {
+    const serviceAccount = require("../admin-cred.json");
+
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount),
+      databaseURL: "https://shopdeliverymanagement.firebaseio.com"
+    });
+} else {
+    admin.initializeApp();
+}
+
+
+exports.addAdminRole = addAdminRole;
+exports.testEndpoint = testEndpoint;
