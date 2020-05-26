@@ -10,7 +10,8 @@ const doMachineLearning = (db) => {
             var similarity = {};
             var dupsim = {};
             var top = {};
-            var userID = JSON.parse(req.body).id;
+            console.log("----------->", req.body.id);
+            var userID = req.body.id;
 
             // Getting User Click Data
             console.log(userID);
