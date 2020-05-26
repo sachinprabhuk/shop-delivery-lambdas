@@ -1,6 +1,10 @@
 const functions = require("firebase-functions");
 const cors = require("cors")({ origin: true });
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
+admin.initializeApp(functions.config().firebase);
 
+let db = admin.firestore();
 const doMachineLearning = functions.https.onRequest(async (request, response) => {
     return cors(request, response, async () => {
         var myclicks = {};
