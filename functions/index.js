@@ -2,7 +2,6 @@ const admin = require("firebase-admin");
 
 const addAdminRole = require("./src/AddAdminRole");
 const testEndpoint = require("./src/TestEndoint");
-const doMachineLearning = require("./src/UpdateRecommendationForUser");
 
 if (process.env.NODE_ENV !== "production") {
     const serviceAccount = require("../admin-cred.json");
@@ -14,6 +13,7 @@ if (process.env.NODE_ENV !== "production") {
 } else {
     admin.initializeApp();
 }
+const doMachineLearning = require("./src/UpdateRecommendationForUser")(admin.firestore());
 
 exports.addAdminRole = addAdminRole;
 exports.testEndpoint = testEndpoint;
