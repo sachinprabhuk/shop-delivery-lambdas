@@ -1,5 +1,4 @@
 const admin = require("firebase-admin");
-
 const addAdminRole = require("./src/AddAdminRole");
 const testEndpoint = require("./src/TestEndoint");
 
@@ -13,8 +12,10 @@ if (process.env.NODE_ENV !== "production") {
 } else {
     admin.initializeApp();
 }
-const doMachineLearning = require("./src/UpdateRecommendationForUser")(admin.firestore());
+const { updateRecommendationsForUser } = require("./src/UpdateRecommendationForUser");
+const { generatePlaceholder } = require("./src/PlaceHolderImageGen");
 
 exports.addAdminRole = addAdminRole;
 exports.testEndpoint = testEndpoint;
-exports.doMachineLearning = doMachineLearning;
+exports.doMachineLearning = updateRecommendationsForUser(admin.firestore());
+exports.generatePlaceholder = generatePlaceholder(admin.storage());

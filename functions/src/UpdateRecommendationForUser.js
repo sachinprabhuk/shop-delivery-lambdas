@@ -1,7 +1,7 @@
 const functions = require("firebase-functions");
 const cors = require("cors")({ origin: true });
 
-const doMachineLearning = (db) => {
+module.exports.updateRecommendationsForUser = (db) => {
     return functions.https.onRequest((req, res) => {
         return cors(req, res, async () => {
             var myclicks = {};
@@ -158,5 +158,3 @@ const doMachineLearning = (db) => {
         });
     });
 };
-
-module.exports = doMachineLearning;
