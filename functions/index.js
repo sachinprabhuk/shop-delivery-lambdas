@@ -14,8 +14,12 @@ if (process.env.NODE_ENV !== "production") {
 }
 const { updateRecommendationsForUser } = require("./src/UpdateRecommendationForUser");
 const { generatePlaceholder } = require("./src/PlaceHolderImageGen");
+const { searchDB } = require("./src/SearchDB");
+
+const db = admin.firestore();
 
 exports.addAdminRole = addAdminRole;
 exports.testEndpoint = testEndpoint;
-exports.doMachineLearning = updateRecommendationsForUser(admin.firestore());
+exports.doMachineLearning = updateRecommendationsForUser(db);
 exports.generatePlaceholder = generatePlaceholder(admin.storage());
+exports.searchDB = searchDB(db);
